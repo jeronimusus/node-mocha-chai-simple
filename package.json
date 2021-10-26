@@ -1,7 +1,7 @@
 {
   "name": "poc-api-testing",
   "version": "1.0.0",
-  "description": "API para cadastro de tarefas",
+  "description": "A simple example of an Node Mocha Chai API framework",
   "main": "index.js",
   "scripts": {
     "tripsBe": "ENV=dev MARKET=beTuiFly mocha --recursive test/SM",
