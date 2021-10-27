@@ -1,13 +1,12 @@
 {
-  "name": "poc-api-testing",
+  "name": "Node Mocha Chai API framework",
   "version": "1.0.0",
   "description": "A simple example of an Node Mocha Chai API framework",
   "main": "index.js",
   "scripts": {
-    "tripsBe": "ENV=dev MARKET=beTuiFly mocha --recursive test/SM",
-    "tripsNl": "ENV=test MARKET=nl mocha --recursive test/SM",
-    "helloWorld": "ENV=dev MARKET=ukTui mocha --recursive test/randomTest/randomTest",
-    "test": "ENV=dev MARKET=nl mocha --recursive test/getOrderTest.js"
+    "allTests": "ENV=dev mocha --recursive test/",
+    "testGetOrder": "ENV=dev mocha --recursive test/getOrderTest.js",
+    "testPostAuth": "ENV=dev mocha --recursive test/postAuthTest.js"
   },
   "keywords": [
     "api",

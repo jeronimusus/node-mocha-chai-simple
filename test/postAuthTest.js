@@ -8,18 +8,21 @@ var _ = require('lodash');
 const ObjectsToCsv = require('objects-to-csv');
 
 const chaiResponseValidator = require('chai-openapi-response-validator');
-const {GetOrder} = require('../services/get-order-service');
+const {GetAccessToken} = require('../services/auth-service');
 // const env = require('../../services/env-service');
 
 chai.use(chaiResponseValidator('/Users/tthjvx/Documents/GitHub/apitesting-mocha-chai-main/yaml/mbaas.yml'));
 
-let response;
-describe('GET all the pizza orders', function() {
+describe('POST acquire access token', function() {
   before('Get the response', async function () {
-    order = new GetOrder();
-    response = await order.getResponse();
+    auth = new GetAccessToken();
+    response = await auth.getResponse();
   });
   it('Should return HTTP Status 200', function () {
     expect(response).to.has.status(200);
+  });
+  it('Should return an Access Token', function () {
+    let token = auth.getAccessToken();
+    expect(token, 'Access Token didnot match JWT regex').to.match(/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/);
   });
 });
