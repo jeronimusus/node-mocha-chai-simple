@@ -6,7 +6,9 @@
   "scripts": {
     "allTests": "ENV=dev mocha --recursive test/",
     "testGetOrder": "ENV=dev mocha --recursive test/getOrderTest.js",
-    "testPostAuth": "ENV=dev mocha --recursive test/postAuthTest.js"
+    "testPostAuth": "ENV=dev mocha --recursive test/postAuthTest.js",
+    "testPostOrder": "ENV=dev mocha --recursive test/postOrderTest.js",
+    "testDeleteOrder": "ENV=dev mocha --recursive test/deleteOrderTest.js"
   },
   "keywords": [
     "api",

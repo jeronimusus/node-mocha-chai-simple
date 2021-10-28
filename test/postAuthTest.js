@@ -11,7 +11,7 @@ const chaiResponseValidator = require('chai-openapi-response-validator');
 const {GetAccessToken} = require('../services/auth-service');
 // const env = require('../../services/env-service');
 
-chai.use(chaiResponseValidator('/Users/tthjvx/Documents/GitHub/apitesting-mocha-chai-main/yaml/mbaas.yml'));
+chai.use(chaiResponseValidator('/Users/tthjvx/Documents/GitHub/node-mocha-chai-simple/resources/pizza_swagger.yaml'));
 
 describe('POST acquire access token', function() {
   before('Get the response', async function () {
@@ -24,5 +24,8 @@ describe('POST acquire access token', function() {
   it('Should return an Access Token', function () {
     let token = auth.getAccessToken();
     expect(token, 'Access Token didnot match JWT regex').to.match(/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/);
+  });
+  it('Should obey the Swagger', async function () {
+    expect(response).to.satisfyApiSpec;
   });
 });

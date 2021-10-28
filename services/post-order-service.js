@@ -4,31 +4,30 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 chai.use(chaiHttp);
 
-class GetAccessToken {
+class PostOrder {
   constructor() {
     let service = chai.request.agent(`https://order-pizza-api.herokuapp.com`);
     this.service = service;
   }
-  async getResponse() {
+  async getResponse(accessToken, crust, flavor, size, tableNo) {
     let data = JSON.stringify({
-      password: 'test',
-      username: 'test'
+      Crust: crust,
+      Flavor: flavor,
+      Size: size,
+      Table_No: tableNo
     });
     this.response = await this.service
-      .post("/api/auth")
+      .post("/api/orders")
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
+      .set('Authorization', accessToken)
       .send(data)
       ;
     return this.response;
   }
-  getAccessToken() {
-    let token = this.response.body.access_token;
-    return token;
-  }
-  getAccessBearerToken() {
-    let token = "Bearer " + this.response.body.access_token;
+  getOrderId() {
+    let token = this.response.body.Order_ID;
     return token;
   }
 }
-module.exports = {GetAccessToken};
+module.exports = {PostOrder};
